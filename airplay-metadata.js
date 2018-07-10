@@ -1,10 +1,11 @@
 var http = require('http');
-var pipedata = "";
+var pipedata;
 
 const fs = require('fs');
 const path = require('path');
 const fifopath = path.resolve('/tmp/shairport-sync-metadata');
 const fifo = fs.createReadStream(fifopath);
+fifo.setEncoding('utf8');
 fifo.on('data', data => {
 		pipedata = data
 });
